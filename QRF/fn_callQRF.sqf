@@ -5,10 +5,9 @@ params [
   ["_QRFGroups", "HSO_QRFGroups", [""]], // The variable name that holds the hashMap with the QRF Groups composition created by the HSO_fnc_groupCompiler
   ["_closestQRF", false, [false]], // If the QRF will spawn to the closes possible position
   ["_canCall", ["canCallQRF", 1] call BIS_fnc_getParamValue, [1]], // Determines if the QRF group can call another QRF if it identifies a player
-  ["_target", objNull, [objNull]] // The unit/player that was indentified.
 ];
 
-private _params = [_grp,_delay,_pos,_QRFGroups,_closestQRF,_canCall,_target];
+private _params = [_grp,_delay,_pos,_QRFGroups,_closestQRF,_canCall];
 private _QRFCalled = false;
 // Delay to give players the chance to neutralise the target
 sleep _delay;
