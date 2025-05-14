@@ -38,7 +38,7 @@ params [
   ["_group", grpNull, [grpNull, objNull]], // The group that EH will be attached and will "call" for a QRF
   ["_delay", ["alertTime",15] call BIS_fnc_getParamValue, [0]], // The time that players will to neutralise the group's units before a QRF is called
   ["_pos", "HSO_QRFspawnPositions", ["", objNull, []], [2,3]], // The position of the spawned group will be spawned
-  ["_QRFCount", ["qrfCount", 12] call BIS_fnc_getParamValue, [0]], // The unit count of the QRF group
+  ["_QRFGroups", "HSO_QRFGroups", [""]], // The unit count of the QRF group
   ["_canCall", ["canCallQRF", 1] call BIS_fnc_getParamValue, [0]] // Determines if the QRF group can call another QRF if it identifies a player
 ];
 
@@ -49,7 +49,7 @@ if !(local _group) exitWith { "The function is meant to be executed only where g
 if (_group isEqualType objNull) then { _group = group _group; };
 
 // The function params are added in group's namespace to be available to EH code
-_this = [_delay, _pos, _QRFCount, _canCall,];
+_this = [_group, _delay, _pos, _QRFCount, _canCall];
 _group setVariable ["enemyDetectedEHParams", _this];
 
 
