@@ -1,8 +1,9 @@
 class HSO_Functions {
   tag = "HSO";
-  files = "HSO_Functions";
+  
 
   class QRF {
+    file = "HSO_Functions\QRF";
     class initQRFSystem {};
     class initQRFSystemForPreplacedGroups {};
     class callQRFEH {};
@@ -11,6 +12,7 @@ class HSO_Functions {
   };
 
   class Compilers {
+    file = "HSO_Functions\Compilers";
     class unitCompiler {};
     class groupCompiler {};
     class applyLoadout {};
@@ -18,6 +20,7 @@ class HSO_Functions {
   };
 
   class Ambient {
+    file = "HSO_Functions\Ambient";
     class disableLights {};
     class disableLightsInteraction {};
   };
