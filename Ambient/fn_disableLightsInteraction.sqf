@@ -6,7 +6,7 @@ params [
 ];
 
 private _text = "<t color='#E60000'>Disable Lights</t>";
-private _conditionShow = "_this distance _target <= 5 AND (alive _target) AND !(_target getVariable ["HSO_LightsDisabled", false])";
+private _conditionShow = "_this distance _target <= 5 AND (alive _target) AND !(_target getVariable [""HSO_LightsDisabled"", false])";
 private _conditionShow = "_caller distance _target <= 5 AND (alive _target) AND (cursorObject isEqualTo _target)";
 
 
