@@ -39,7 +39,7 @@ params [
   ["_delay", ["alertTime",15] call BIS_fnc_getParamValue, [0]], // The time that players will to neutralise the group's units before a QRF is called
   ["_pos", "HSO_QRFspawnPositions", ["", objNull, []], [2,3]], // The position of the spawned group will be spawned
   ["_QRFCount", ["qrfCount", 12] call BIS_fnc_getParamValue, [0]], // The unit count of the QRF group
-  ["_canCall", ["canCallQRF", 1] call BIS_fnc_getParamValue, [true]] // Determines if the QRF group can call another QRF if it identifies a player
+  ["_canCall", ["canCallQRF", 1] call BIS_fnc_getParamValue, [0]] // Determines if the QRF group can call another QRF if it identifies a player
 ];
 
 // Check if the entity that was passed is local. If it is not, the funciton exit
@@ -49,7 +49,7 @@ if !(local _group) exitWith { "The function is meant to be executed only where g
 if (_group isEqualType objNull) then { _group = group _group; };
 
 // The function params are added in group's namespace to be available to EH code
-_this = [_group, _delay, _pos, _minDis, _QRFCount, _ldVarName, _canCall, _isHunter];
+_this = [_delay, _pos, _QRFCount, _canCall,];
 _group setVariable ["enemyDetectedEHParams", _this];
 
 
@@ -61,7 +61,8 @@ _group addEventHandler ["EnemyDetected", {
   if (([side _target, side _grp] call BIS_fnc_sideIsEnemy) AND (_grp getVariable ["canCallQRF", true])) then {
     // Get the params of the function to pass them to the spawn QRF function
     private _params = _grp getVariable ["enemyDetectedEHParams", []];
-    // And adds the identified target to the params
+    // And adds the identified target and the group to the params
+    _params pushBack _grp;
     _params pushBack _target;
     // Removes the EH so it will trigger only once. The rest will be handled by the function below
     _grp removeEventHandler [_thisEvent, _thisEventHandler];
