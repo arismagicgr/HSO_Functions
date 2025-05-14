@@ -49,7 +49,7 @@ if !(local _group) exitWith { "The function is meant to be executed only where g
 if (_group isEqualType objNull) then { _group = group _group; };
 
 // The function params are added in group's namespace to be available to EH code
-_this = [_group, _delay, _pos, _QRFCount, _canCall];
+_this = [_group, _delay, _pos, _QRFGroups, _canCall];
 _group setVariable ["enemyDetectedEHParams", _this];
 
 
@@ -62,7 +62,6 @@ _group addEventHandler ["EnemyDetected", {
     // Get the params of the function to pass them to the spawn QRF function
     private _params = _grp getVariable ["enemyDetectedEHParams", []];
     // And adds the identified target and the group to the params
-    _params pushBack _grp;
     _params pushBack _target;
     // Removes the EH so it will trigger only once. The rest will be handled by the function below
     _grp removeEventHandler [_thisEvent, _thisEventHandler];
