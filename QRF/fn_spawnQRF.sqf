@@ -50,12 +50,12 @@ _text remoteExec ["BIS_fnc_showSubtitle", (allPlayers distance (leader _grp)) <=
 private _QRFGrpData = [_allGrp] call HSO_fnc_getQRFGroup;
 
 /*======================== SPAWN QRF GROUP ====================================*/
-private _newGroup = createGroup (side _grp);
+private _QRFGrp = createGroup (side _grp);
 {
   private _class = _x select 0;
   private _ld = _x select 1;
 
-  private _newUnit = _newGroup createUnit [_class, _spawnPos, [], 5, "NONE"];
+  private _newUnit = _QRFGrp createUnit [_class, _spawnPos, [], 5, "NONE"];
   _newUnit setUnitLoadout _ld;
 
 } forEach _QRFGrpData;
