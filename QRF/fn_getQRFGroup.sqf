@@ -4,15 +4,15 @@ params [
 
 private _hash = missionNamespace getVariable [_varName, createHashMap];
 private _allGrp = keys _hash;
-if ((count _allGrp) isEqualTo 0) exitWith { "No groups were found" };
+if ((count _allGrp) isEqualTo 0) exitWith { nil };
 private _grp = selectRandom _allGrp;
 private _data = _hash get _grp;
-private _classNames = [];
-private _loadouts = [];
+private _unitsData = [];
 
 {
-  _classNames pushBack (_x select 0);
-  _loadouts pushBack (_x select 1);
+  private _class = _x select 0;
+  private _ld = _x select 1;
+  _unitsData pushBack [_class, _ld];
 } forEach _data;
 
-[_classNames, _loadouts];
+_unitsData;
