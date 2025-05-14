@@ -28,17 +28,22 @@ _radius: ["disableLightsRadius", 1000] call BIS_fnc_getParamValue. Αυτή η d
 
 // HSO_fnc_disableLightsInteraction
 
-[_obj, _radius] call HSO_fnc_disableLightsInteraction;
+[_obj, _destroyObj, _radius, _centre] call HSO_fnc_disableLightsInteraction;
 
 _obj [objNull]: Το αντικείμενο στο οποίο θα προστεθεί το holdAction. Η θέση αυτού του αντικειμένου
 θα χρησιμοποιηθεί και ως κέντρο για την έρευνα λαμπών που θα απενεργοποιηθούν όταν ολοκληρωθεί το holdAction.
+_destroyObj [bool]: Αν τεθεί ως true, όταν ολοκληρωθεί το interaction το αντικείμενο θα καταστραφεί (_obj setDamage 1)
 _radius [number]: Ακτίνα από την κεντρική θέση που θα γίνει αναζήτηση λαμπών για απενεργοποίηση.
+_centre [object, string]: Αντικείμενο ή marker που θα χρησιμοποιηθεί ως επίκεντρο από το οποίο σε _radius απόσταση θα απενεργοποιηθούν οι λάμπες.
+Σε περίπτωση που δεν οριστεί κάτι (όπως και η default κατάσταση του function) το _obj θα χρησιμοποιηθεί ως επίκτεντρο.
 
 Default values:
 _obj: objNull
+_destroyObj: false
 _radius: ["disableLightsRadius", 1000] call BIS_fnc_getParamValue. Αυτή η default τιμή, ψάχνει
 να βρει μία mission parameter με className "disableLightsRadius" και να πάρει την τιμή που έχει
 οριστεί εκεί. Σε περίπτωση που δεν υπάρχει αυτή η παράμετρος, τότε η default τιμή γίνεται 1000 μέτρα.
+_centre: objNull
 
 Αυτό το function, προσθέτει ένα interaction (holdAction) σε ένα αντικείμενο που δίνει τη δυνατότητα στους
 παίκτες να αντιδράσουν με το αντικείμενο για να απενεργοποιήσουν τα φώτα σε παριοχή γύρω από το αντικείμενο
@@ -50,7 +55,7 @@ _radius: ["disableLightsRadius", 1000] call BIS_fnc_getParamValue. Αυτή η d
 Event Handler τύπου "Killed" στο _obj που εκτελεί το HSO_fnc_disableLights σε περίπτωση που το _obj καταστραφεί
 με άλλο τρόπο εκτός από το interaction που προστίθεται από αυτό το function. Επειδή γίνεται χρήση του HSO_fnc_disableLights
 ισχύει ό,τι για το HSO_fnc_disableLights function.
-Τέλος, αυτό το function θέτει το damage του _obj σε 1 (_target setDamage 1) (το καταστρέφει δηλαδή)
+Τέλος, υπάρχει επιλογή (η 2η παράμετρος), αυτό το function να θέτει το damage του _obj σε 1 (_target setDamage 1) (το καταστρέφει δηλαδή)
 για να απενεργοποιήσει την αλληλεπίδραση με αυτό. Οπότε, απαιτείται προσοχή αν αυτό το function τοποθετηθεί
 σε αντικείμενο που μπορεί να έχει εφέ καταστροφής (π.χ. κάποιο κτήριο που μπορεί να καταρεύσει ή όχημα που μπορεί
 να προκαλέσει εκρήξεις).
