@@ -9,8 +9,10 @@ params [
 // Get the leader of the group to do the calculations and get the position for the waypoint
 private _leader = leader _grp;
 
-// Find the closest QRF spawn position
-private _pos = missionNamespace [_pos, []];
+
+//////////////////////////// SPAWN POSITION ///////////////////////////////////////
+// Find the (closest) QRF spawn position
+_pos = missionNamespace [_pos, []];
 
 if ((count _pos) isEqualTo 0) exitWith {
 
@@ -22,9 +24,12 @@ if ((count _pos) isEqualTo 0) exitWith {
 
 // Find the QRF Spawn Position closest to the leader of the group that called QRF. If _closestQRF is set to true, then this will be used as spawn position
 if (_closestQRF) then {
+  // Pick the first position and its distance from leader of the group that called the QRF
   _closestDistance = _leader distanceSqr (_pos select 0);
   _spawnPos = _pos select 0;
 
+  // Iterate through all the positions in the _pos array to check if there is any closer
+  // And if there is one, discard the old one and keep the new one
   {
     private _dis = _x distanceSqr _leader;
     if (_dis <= _closestDistance) then {
@@ -32,13 +37,16 @@ if (_closestQRF) then {
       _spawnPos = _x;
     };
   } forEach _pos;
+} else {
+  // Else, choose a random one
+  _spawnPos = selectRandom _pos;
 };
 
 // Get all possible QRF Groups to randomly choose one and get the data to be used to spawn the group with the specific loadouts for its units
 private _allGrp = missionNamespace getVariable [_QRFGroups, createHashMap];
 
 // If the group does not exist exit the function
-if (isNil "_allGrp") exitWith {
+if ((isNil "_allGrp") OR ((count (keys _allGrp)) isEqualTo 0)) exitWith {
 
 private _text = ["[FROM ENEMY RADIO]","<t color='#E60000'>[ENEMY HQ] Negative, there no available units to send...</t>"];
 // If there is not a position available to spawn the group, inform the players near the leader of the group and exit the script
