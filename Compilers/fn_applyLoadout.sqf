@@ -3,7 +3,7 @@ params [
   ["_varName", "HSO_enemyUnits", [""]]
 ];
 
-private _hash = missionNamespace getVariable "HSO_enemyUnits";
+private _hash = missionNamespace getVariable _varName;
 if (isNil "_hash") exitWith { "No loadout data was found" };
 
 private _units = [];
