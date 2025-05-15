@@ -1,7 +1,7 @@
 if !(isServer) exitWith { "The function is executed only in the Server"; };
 params [
   ["_logic", objNull,[objNull]],
-  ["_varName", "HSO_enemyUnits", [""]]
+  ["_varName", "HSO_compiledUnits", [""]]
 ];
 
 private _hash = createHashMap;
