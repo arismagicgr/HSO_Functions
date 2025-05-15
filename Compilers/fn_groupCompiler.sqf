@@ -37,3 +37,8 @@ private _allGrp = [];
 
 // Store the HashMap in a public variable in missionNamespace
 missionNamespace setVariable [_varName, _hash, true];
+
+// Delete the object that everything was synced to, to clean my mess once more
+deleteVehicle _logic;
+
+_hash;
