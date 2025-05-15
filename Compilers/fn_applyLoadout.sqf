@@ -9,7 +9,7 @@ if (isNil "_hash") exitWith { "No loadout data was found" };
 private _units = [];
 switch (true) do {
   case (_entity isEqualType grpNull): { _units = units _entity; };
-  case (_entity isEqualType objNull): { _units = [_units]; };
+  case (_entity isEqualType objNull): { _units = [_entity]; };
 };
 
 {
