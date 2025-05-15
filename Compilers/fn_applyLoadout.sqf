@@ -10,7 +10,6 @@ private _units = [_entity];
 if (_entity isEqualType grpNull) then { _units = units _entity; };
 
 {
-  hint (str _x);
   private _class = typeOf _x;
   private _ld = _hash get _class;
   _x setUnitLoadout [_ld, true];
