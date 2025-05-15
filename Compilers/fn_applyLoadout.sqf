@@ -13,7 +13,7 @@ switch (true) do {
 };
 
 {
-  private _class = typeOf _x
+  private _class = typeOf _x;
   private _ld = _hash get _class;
   _x setUnitLoadout [_ld, true];
 } forEach _units;
