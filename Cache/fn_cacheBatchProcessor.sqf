@@ -1,8 +1,8 @@
 if (!isServer) exitWith {};
 
 params [
-  ["_tick", ["LNO_cacheSystemBatchIteration", 1] call BIS_fnc_getParamValue, [0]],
-  ["_batchSize", ["LNO_cacheSystemBatchSize",10] call BIS_fnc_getParamValue, [0]]
+  ["_tick", ["HSO_cacheSystemBatchIteration", 1] call BIS_fnc_getParamValue, [0]],
+  ["_batchSize", ["HSO_cacheSystemBatchSize",10] call BIS_fnc_getParamValue, [0]]
 ];
 private _params = [_tick, _batchSize];
 private _groups = allGroups;
@@ -10,7 +10,7 @@ private _count = count _groups;
 private _startIndex = 0;
 
 while {
-  (_startIndex < _count) AND (missionNamespace getVariable ["LNO_cacheSystemRunning", false])
+  (_startIndex < _count) AND (missionNamespace getVariable ["HSO_cacheSystemRunning", false])
 } do {
   // Set the end index according to batch size
   private _endIndex = _startIndex + (_batchSize - 1);
@@ -23,7 +23,7 @@ while {
     private _grp = _groups select _i;
 
     if ((!isNull _grp) AND ((count (units _grp)) isNotEqualTo 0)) then {
-      [_grp] call LNO_fnc_cacheCheckGroup;
+      [_grp] call HSO_fnc_cacheCheckGroup;
     };
 
     // Update the total count to make sure that our groups array is up to date
@@ -38,6 +38,6 @@ while {
   };
 };
 
-if (missionNamespace getVariable ["LNO_cacheSystemRunning", false]) then {
-  _params spawn LNO_fnc_cacheBatchProcessor;
+if (missionNamespace getVariable ["HSO_cacheSystemRunning", false]) then {
+  _params spawn HSO_fnc_cacheBatchProcessor;
 };
