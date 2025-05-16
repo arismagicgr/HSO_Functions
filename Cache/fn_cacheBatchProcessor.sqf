@@ -27,7 +27,7 @@ while {
     private _grp = _groups select _i;
 
     if ((!isNull _grp) AND ((count (units _grp)) isNotEqualTo 0)) then {
-      [_grp] call LNO_fnc_cacheCheckGroup;
+      [_grp] call LNO_fnc_manageCache;
     };
 
     // Update the total count to make sure that our groups array is up to date
