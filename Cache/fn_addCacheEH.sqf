@@ -8,6 +8,6 @@ _group addEventHandler ["CombatModeChanged", {
 
   // If the group gets into combat, decache the group immediatelly and exit the script
   if {_newMode isEqualTo "COMBAT"} exitWith {
-    [_grp] call LNO_fnc_decacheGroup;
+    [_grp] call HSO_fnc_decacheGroup;
   };
 }];
