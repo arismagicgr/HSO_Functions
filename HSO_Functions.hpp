@@ -24,4 +24,13 @@ class HSO_Functions {
     class disableLights {};
     class disableLightsInteraction {};
   };
+
+  class Cache {
+    file = "HSO_Functions\Cache";
+    class initCacheSystem {};
+    class cacheBatchProcessor {};
+    class addCacheMissionEH {};
+    class addCacheEH {};
+    class addCacheEHToAllGroups {};
+  };
 };
