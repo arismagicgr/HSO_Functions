@@ -71,13 +71,16 @@ private _QRFGrp = createGroup (side _grp);
 // Create the waypoint for the group
 
 // Code to be executed when the waypoint gets completed
-private _onCompleted = str {if (!local this) exitWith {}; (group this) enableDynamicSimulation true; [group this, [getPosATL this, 100, 100, 0, false]] call CBA_fnc_taskSearchArea;};
+private _onCompleted = str {
+  if (!local this) exitWith {}; (group this) enableDynamicSimulation true; [group this, [getPosATL this, 100, 100, 0, false]] call CBA_fnc_taskSearchArea;
+  };
 
 // The actual waypoint
 private _wp = _QRFGrp addWaypoint [getPosATL _leader, 30, -1, "QRFWaypoint"];
 _wp setWaypointType "SAD"; // Type "Search And Destroy"
 _wp setWaypointBehaviour "AWARE"; // Behaviour "AWARE"
-_wp setWaypointCombatMode "RED"; // Combat Mode "Fire At Will, Break Formation"
+_wp setWaypointSpeed "FULL";
+_wp setWaypointCombatMode "YELLOW"; // Combat Mode "Fire At Will, Keep Formation"
 _wp setWaypointStatements ["true", _onCompleted]; // The waypoint's statement
 
 // Giving feedback to players close to the enemy leader that a QRF has been dispatched
