@@ -71,7 +71,7 @@ private _QRFGrp = createGroup (side _grp);
 // Create the waypoint for the group
 
 // Code to be executed when the waypoint gets completed
-private _onCompleted = "if !(local this) exitWith {}; (group this) enableDynamicSimulation true; [group this, [getPosATL this, 100, 100, 0, false]] call CBA_fnc_taskSearchArea;";
+private _onCompleted = str {if (!local this) exitWith {}; (group this) enableDynamicSimulation true; [group this, [getPosATL this, 100, 100, 0, false]] call CBA_fnc_taskSearchArea;};
 
 // The actual waypoint
 private _wp = _QRFGrp addWaypoint [getPosATL _leader, 30, -1, "QRFWaypoint"];
