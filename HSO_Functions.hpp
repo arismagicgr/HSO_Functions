@@ -23,6 +23,8 @@ class HSO_Functions {
     file = "HSO_Functions\Ambient";
     class disableLights {};
     class disableLightsInteraction {};
+    class cutGrass {};
+    class cutGrassInteraction {};
   };
 
   class Cache {
