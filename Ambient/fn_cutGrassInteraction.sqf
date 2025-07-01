@@ -1,7 +1,11 @@
 params [
 	["_player", objNull, [objNull]],
+
     ["_duration", 5, [0]],
     ["_distance", 1, [0]]
+
+    ["_duration", 5, [0]]
+
 ];
 
 private _text = "<t color='#E60000'>Cut Grass in front of you</t>";
@@ -20,6 +24,9 @@ private _text = "<t color='#E60000'>Cut Grass in front of you</t>";
   }, // Code completed
   {}, // Code interrupted
   [_distance], // Params
+  { [_caller] call HSO_fnc_cutGrass; }, // Code completed
+  {}, // Code interrupted
+  [], // Params
   _duration, // Duration
   0, // Priority
   false, // Remove completed
