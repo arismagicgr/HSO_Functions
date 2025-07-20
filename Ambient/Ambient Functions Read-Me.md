@@ -9,12 +9,12 @@
 ```sqf
 [_source, _radius] call HSO_fnc_disableLights;
 ```
-_source [object, string]: To αντικείμενο (ή marker) που θα χρησιμοποιηθεί ως "κέντρο" της αναζήτησης λαμπών.
-_radius [number]: Η ακτίνα (όχι διάμετρος) στην οποία θα γίνει αναζήτηση λαμπών για απενεργοποίηση.
+__source_ [object, string]: To αντικείμενο (ή marker) που θα χρησιμοποιηθεί ως "κέντρο" της αναζήτησης λαμπών.
+__radius_ [number]: Η ακτίνα (όχι διάμετρος) στην οποία θα γίνει αναζήτηση λαμπών για απενεργοποίηση.
 
-Default values:
-_source: objNull
-_radius: ["disableLightsRadius", 1000] call BIS_fnc_getParamValue. Αυτή η default τιμή, ψάχνει
+**Default values**:
+__source_: `objNull`
+__radius_: `["disableLightsRadius", 1000] call BIS_fnc_getParamValue`. Αυτή η default τιμή, ψάχνει
 να βρει μία mission parameter με className "disableLightsRadius" και να πάρει την τιμή που έχει
 οριστεί εκεί. Σε περίπτωση που δεν υπάρχει αυτή η παράμετρος, τότε η default τιμή γίνεται 1000 μέτρα.
 
@@ -29,22 +29,24 @@ _radius: ["disableLightsRadius", 1000] call BIS_fnc_getParamValue. Αυτή η d
 
 ## HSO_fnc_disableLightsInteraction
 
+```sqf
 [_obj, _destroyObj, _radius, _centre] call HSO_fnc_disableLightsInteraction;
+```
 
-_obj [objNull]: Το αντικείμενο στο οποίο θα προστεθεί το holdAction. Η θέση αυτού του αντικειμένου
+__obj_ [object]: Το αντικείμενο στο οποίο θα προστεθεί το holdAction. Η θέση αυτού του αντικειμένου
 θα χρησιμοποιηθεί και ως κέντρο για την έρευνα λαμπών που θα απενεργοποιηθούν όταν ολοκληρωθεί το holdAction.
-_destroyObj [bool]: Αν τεθεί ως true, όταν ολοκληρωθεί το interaction το αντικείμενο θα καταστραφεί (_obj setDamage 1)
-_radius [number]: Ακτίνα από την κεντρική θέση που θα γίνει αναζήτηση λαμπών για απενεργοποίηση.
-_centre [object, string]: Αντικείμενο ή marker που θα χρησιμοποιηθεί ως επίκεντρο από το οποίο σε _radius απόσταση θα απενεργοποιηθούν οι λάμπες.
+__destroyObj_ [bool]: Αν τεθεί ως true, όταν ολοκληρωθεί το interaction το αντικείμενο θα καταστραφεί (_obj setDamage 1)
+__radius_ [number]: Ακτίνα από την κεντρική θέση που θα γίνει αναζήτηση λαμπών για απενεργοποίηση.
+__centre_ [object, string]: Αντικείμενο ή marker που θα χρησιμοποιηθεί ως επίκεντρο από το οποίο σε _radius απόσταση θα απενεργοποιηθούν οι λάμπες.
 Σε περίπτωση που δεν οριστεί κάτι (όπως και η default κατάσταση του function) το _obj θα χρησιμοποιηθεί ως επίκτεντρο.
 
 Default values:
-_obj: objNull
-_destroyObj: false
-_radius: ["disableLightsRadius", 1000] call BIS_fnc_getParamValue. Αυτή η default τιμή, ψάχνει
+__obj_: `objNull`
+__destroyObj_: `false`
+__radius_: `["disableLightsRadius", 1000] call BIS_fnc_getParamValue`. Αυτή η default τιμή, ψάχνει
 να βρει μία mission parameter με className "disableLightsRadius" και να πάρει την τιμή που έχει
 οριστεί εκεί. Σε περίπτωση που δεν υπάρχει αυτή η παράμετρος, τότε η default τιμή γίνεται 1000 μέτρα.
-_centre: objNull
+__centre_: `objNull`
 
 Αυτό το function, προσθέτει ένα interaction (holdAction) σε ένα αντικείμενο που δίνει τη δυνατότητα στους
 παίκτες να αντιδράσουν με το αντικείμενο για να απενεργοποιήσουν τα φώτα σε παριοχή γύρω από το αντικείμενο
