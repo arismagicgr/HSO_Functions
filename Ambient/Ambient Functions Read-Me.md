@@ -4,10 +4,11 @@
 τον mission maker να προσθέσει λεπτομέρειες που θα κάνουν την αποστολή πιο ενδιαφέρουσα,
 με εύκολο και απλό τρόπο!
 
-// HSO_fnc_disableLights
+## HSO_fnc_disableLights
 
+```sqf
 [_source, _radius] call HSO_fnc_disableLights;
-
+```
 _source [object, string]: To αντικείμενο (ή marker) που θα χρησιμοποιηθεί ως "κέντρο" της αναζήτησης λαμπών.
 _radius [number]: Η ακτίνα (όχι διάμετρος) στην οποία θα γίνει αναζήτηση λαμπών για απενεργοποίηση.
 
@@ -26,7 +27,7 @@ _radius: ["disableLightsRadius", 1000] call BIS_fnc_getParamValue. Αυτή η d
 η HSO_fnc_disableLightsInteraction (βλέπε παρακάτω).
 
 
-// HSO_fnc_disableLightsInteraction
+## HSO_fnc_disableLightsInteraction
 
 [_obj, _destroyObj, _radius, _centre] call HSO_fnc_disableLightsInteraction;
 
