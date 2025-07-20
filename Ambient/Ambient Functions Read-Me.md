@@ -14,7 +14,8 @@ __radius_ [number]: Η ακτίνα (όχι διάμετρος) στην οπο�
 
 **Default values**:
 __source_: `objNull`
-__radius_: `["disableLightsRadius", 1000] call BIS_fnc_getParamValue`. 
+
+__radius_: `["disableLightsRadius", 1000] call BIS_fnc_getParamValue`
 Αυτή η default τιμή, ψάχνει
 να βρει μία mission parameter με className "disableLightsRadius" και να πάρει την τιμή που έχει
 οριστεί εκεί. Σε περίπτωση που δεν υπάρχει αυτή η παράμετρος, τότε η default τιμή γίνεται 1000 μέτρα.
