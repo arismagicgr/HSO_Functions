@@ -15,14 +15,9 @@ private _text = "<t color='#E60000'>Cut Grass in front of you</t>";
   "true",
   {}, // Code start
   {}, // Code progress
-  { 
-    [_caller, (_this select 3) select 0] call HSO_fnc_cutGrass; 
-  }, // Code completed
+  { [_caller, (_this select 3) select 0] call HSO_fnc_cutGrass; }, // Code completed
   {}, // Code interrupted
   [_distance], // Params
-  { [_caller] call HSO_fnc_cutGrass; }, // Code completed
-  {}, // Code interrupted
-  [], // Params
   _duration, // Duration
   0, // Priority
   false, // Remove completed
