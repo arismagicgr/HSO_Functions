@@ -43,10 +43,13 @@ __centre_ [object, string]: Αντικείμενο ή marker που θα χρη�
 Default values:
 
 __obj_: `objNull`
+
 __destroyObj_: `false`
+
 __radius_: `["disableLightsRadius", 1000] call BIS_fnc_getParamValue`. Αυτή η default τιμή, ψάχνει
 να βρει μία mission parameter με className "disableLightsRadius" και να πάρει την τιμή που έχει
 οριστεί εκεί. Σε περίπτωση που δεν υπάρχει αυτή η παράμετρος, τότε η default τιμή γίνεται 1000 μέτρα.
+
 __centre_: `objNull`
 
 Αυτό το function, προσθέτει ένα interaction (holdAction) σε ένα αντικείμενο που δίνει τη δυνατότητα στους
