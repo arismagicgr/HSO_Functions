@@ -41,6 +41,7 @@ __centre_ [object, string]: Αντικείμενο ή marker που θα χρη�
 Σε περίπτωση που δεν οριστεί κάτι (όπως και η default κατάσταση του function) το _obj θα χρησιμοποιηθεί ως επίκτεντρο.
 
 Default values:
+
 __obj_: `objNull`
 __destroyObj_: `false`
 __radius_: `["disableLightsRadius", 1000] call BIS_fnc_getParamValue`. Αυτή η default τιμή, ψάχνει
