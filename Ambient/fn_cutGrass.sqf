@@ -1,6 +1,6 @@
 params [
     ["_pos", objNull, [objNull,"",[]], [2,3]]
-    ["_distance", 1, [0]]
+    ["_distance", 0, [0]]
 ];
 
 switch (true) do {
