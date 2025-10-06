@@ -1,5 +1,5 @@
 Για να χρησιμοποιήσεις τα functions, πρέπει να βάλεις αυτόν τον φάκελο
-μέσα στον φάκελο της αποστολής όπως στον έστειλα και θα πρέπει επίσης
+μέσα στον φάκελο της αποστολής και θα πρέπει επίσης
 στο description.ext να φτιάξεις (αν δεν έχεις ήδη) μία κλάση CfgFunctions και να κάνεις
 #include το HSO_Functions.hpp. Αυτό γίνεται έτσι:
 
@@ -108,3 +108,4 @@ class Params {
   #include "HSO_Functions\params\alertTime.hpp"
   #include "HSO_Functions\params\canCallQRF.hpp"
 };
+
