@@ -3,6 +3,8 @@ params [
   ["_radius", ["disableLightsRadius",1000] call BIS_fnc_getParamValue, [0]]
 ];
 
+if (_radius < 0) then { _radius = abs _radius; };
+
 switch (true) do {
   case (_source isEqualType ""): { _source = getMarkerPos _source; };
   case (_source isEqualType objNull): { _source = getPosATL _source; };
