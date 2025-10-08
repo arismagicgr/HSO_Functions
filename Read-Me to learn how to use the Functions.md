@@ -8,7 +8,7 @@
 άρα τελικά μέσα στο description.ext θα πρέπει να έχεις
 (τουλάχιστον) αυτό:
 
-```sqf
+```cpp
 class CfgFunctions {
 #include "HSO_Functions\HSO_Functions.hpp"
 };
@@ -112,4 +112,5 @@ class Params {
   #include "HSO_Functions\params\canCallQRF.hpp"
 };
 ```
+
 
