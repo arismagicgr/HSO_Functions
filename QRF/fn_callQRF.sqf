@@ -4,7 +4,7 @@ params [
   ["_pos", "HSO_QRFspawnPositions", [""]], // The variable in missionNamespace that holds the possible enemy spawn positions (created by LNO_fnc_registerHelperObjects in editor)
   ["_QRFGroups", "HSO_QRFGroups", [""]], // The variable name that holds the hashMap with the QRF Groups composition created by the HSO_fnc_groupCompiler
   ["_closestQRF", false, [false]], // If the QRF will spawn to the closes possible position
-  ["_canCall", ["canCallQRF", 1] call BIS_fnc_getParamValue, [1]], // Determines if the QRF group can call another QRF if it identifies a player
+  ["_canCall", ["canCallQRFParam", 1] call BIS_fnc_getParamValue, [1]], // Determines if the QRF group can call another QRF if it identifies a player
 ];
 
 private _params = [_grp,_delay,_pos,_QRFGroups,_closestQRF,_canCall];
@@ -29,3 +29,4 @@ if ((count _alive) isEqualTo 0) exitWith {};
 if (!(_QRFCalled)) then {
   _params spawn HSO_fnc_callQRF;
 };
+
