@@ -2,9 +2,9 @@
 μέσα στον φάκελο της αποστολής και θα πρέπει επίσης
 στο description.ext να φτιάξεις (αν δεν έχεις ήδη) μία κλάση CfgFunctions και να κάνεις
 #include το HSO_Functions.hpp. Αυτό γίνεται έτσι:
-
+```cpp
 #include "HSO_Functions\HSO_Functions.hpp"
-
+```
 άρα τελικά μέσα στο description.ext θα πρέπει να έχεις
 (τουλάχιστον) αυτό:
 
@@ -112,3 +112,4 @@ class Params {
   #include "HSO_Functions\params\canCallQRF.hpp"
 };
 ```
+
