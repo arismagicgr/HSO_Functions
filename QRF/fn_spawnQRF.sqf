@@ -3,7 +3,7 @@ params [
   ["_pos", "HSO_QRFspawnPositions", [""]], // Variable name in missionNamespace that holds the objects that act as possible enemy spawn positions
   ["_QRFGroups", "HSO_QRFGroups", [""]], // Variable Name that holds the HashMap of all the groups that can be used as QRF
   ["_closestQRF", false, [false]], // If the QRF will spawn to the closes possible position
-  ["_canCall", ["canCallQRF", 1] call BIS_fnc_getParamValue, [1]]
+  ["_canCall", ["canCallQRFParam", 1] call BIS_fnc_getParamValue, [1]]
 ];
 
 // Get the leader of the group to do the calculations and get the position for the waypoint
@@ -89,3 +89,4 @@ _text remoteExecCall ["BIS_fnc_showSubtitle", allPlayers select { (_x distance (
 
 // If the mission params are set, the QRF Group will be able to call for a QRF Group itself
 if (_canCall isEqualTo 1) then { [_QRFGrp] call HSO_fnc_callQRFEH; };
+
