@@ -8,10 +8,11 @@
 άρα τελικά μέσα στο description.ext θα πρέπει να έχεις
 (τουλάχιστον) αυτό:
 
+```sqf
 class CfgFunctions {
 #include "HSO_Functions\HSO_Functions.hpp"
 };
-
+```
 
 Για να δουλέψει όλο το σύστημα με τα QRFs θα πρέπει να γίνουν τα παρακάτω βήματα:
 
@@ -19,7 +20,9 @@ class CfgFunctions {
 σημείο που δεν θα έχει να κάνει με την αποστολή) ένα object τύπου "Game Logic", να
 προσθέσεις στο init field του το παρακάτω function
 
+```sqf
 [this] call HSO_fnc_groupCompiler;
+```
 
 και να "συγχρονίσεις" με μία έστω μονάδα από κάθε group που θέλεις να χρησιμοποιηθεί ως QRF Group.
 Τα groups που θα συγχρονίσεις, θα χρησιμοποιηθούν ΑΥΤΟΥΣΙΑ ως πιθανά QRF Groups. Δηλαδή:
@@ -27,7 +30,7 @@ class CfgFunctions {
 όπως θα τα ορίσεις στον editor. Από όσα groups συγχρονίσεις με το object, όταν γίνει
 κλήση για QRF από κάποιο group, το function θα διαλέξει ένα στην τύχη και θα το κάνει
 spawn στο κοντινότερο σημείο από αυτά που θα έχουν οριστεί
-με το HSO_fnc_registerHelper function (δες παρακάτω).
+με το `HSO_fnc_registerHelper` function (δες παρακάτω).
 Για την ώρα, (δυστυχώς) λειτουργούν μόνο για units (πεζικό) και όχι για vehicles τα functions.
 Έτσι, θα δημιουργήσεις την "δεξαμενή" με τα "είδη" των groups από τα οποία θα διαλέγει τυχαία το function που θα κάνει
 spawn τα QRFs.
@@ -35,9 +38,9 @@ spawn τα QRFs.
 2) Θα πρέπει να τοποθετήσεις σε σημεία που θα θέλεις να γίνονται spawn οι QRFs
 "Game Logic" objects (ή οποιοδήποτε άλλο object) και στο init field του να βάλεις
 αυτό:
-
+```sqf
 [this] call HSO_fnc_registerHelper;
-
+```
 με αυτό τον τρόπο, αυτό το αντικείμενο θα προστεθεί σε μία "δεξαμενή" με πιθανά
 QRF Spawn Positions. Το function θα διαλέγει το κοντινότερο σημείο από το σημείο
 στο οποίο βρίσκεται ο group leader του group που κάλεσε QRF. Είναι εφικτό ακόμη
@@ -48,29 +51,29 @@ QRF Spawn Positions. Το function θα διαλέγει το κοντινότε
 3) Αν έχεις τοποθετήσει groups στον editor και θέλεις να τα συμπεριλάβεις όλα στο
 QRF System, πρόσθεσε το παρακάτω function στο initServer.sqf (ή στο init.sqf μιας
 και το έχω ορίσει να εκτελείται μόνο στον Server).
-
+```sqf
 [] call HSO_fnc_initQRFSystemForPreplacedGroups;
-
+```
 Αν όμως δεν θέλεις να είναι σε όλα τα groups τότε θα πρέπει να προσθέσεις το παρακάτω
 function στο init field του κάθε group (προσοχή, group, όχι unit του group).
-
+```sqf
 [this] call HSO_fnc_callQRFEH;
-
+```
 4) Αν θέλεις ΟΛΑ τα groups που θα γίνονται spawn κατά τη διάρκεια της αποστολής να
 συμπεριλαμβάνοντε αυτόματα στο QRF System τότε, πρόσθεσε το παρακάτω function στο
 initServer.sqf (ή πάλι στο init.sqf μιας και αυτό εκτελείται μόνο στον Server).
-
+```sqf
 [] call HSO_fnc_initQRFSystem;
-
+```
 
 
 ///////////////////////////////////////////////////////////////////////////////////
 Αν οποιαδήποτε στιγμή θέλεις να απενεργοποιήσεις την δυνατότητα κάποιου group να
 καλέσει QRF, θέσε ως false την μεταβλητή "canCallQRF" στο namespace του group με
 τον παρακάτω τρόπο:
-
+```sqf
 _group setVariable ["canCallQRF", false, true];
-
+```
 Αυτό μπορεί να γίνει από τον editor από το init field είτε του group, είτε κάποιου
 unit που ανήκει στο group. Αν δεν κάνω λάθος και το Zeus Enhanced δίνει τη δυνατότητα
 να εκτελέσεις κώδικα σε κάποιο object. Απλά να θυμάσει πως "παίρνεις" κάθε φορά το
@@ -103,9 +106,9 @@ group (π.χ. από το init field του group θα το πάρεις ως "t
 
 Για να τις συμπεριλάβεις θα πρέπει να φτιάξεις (αν δεν έχεις ήδη) μία κλάση Params (class Params)
 και εκεί να κάνεις #include τις παραμέτρους αυτές. Τελικά θα πρέπει να είναι κάπως έτσι:
-
+```cpp
 class Params {
   #include "HSO_Functions\params\alertTime.hpp"
   #include "HSO_Functions\params\canCallQRF.hpp"
 };
-
+```
