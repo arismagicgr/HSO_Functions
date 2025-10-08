@@ -41,8 +41,6 @@ private _conditionShow = "_caller distance _target <= 5 AND (alive _target) AND 
 
 _obj addEventHandler ["Killed", {
 	params ["_unit", "_killer", "_instigator", "_useEffects"];
-  private _radius = _unit getVariable ["HSO_disableLights", [_unit, ["disableLightsRadius",1000] call BIS_fnc_getParamValue]];
-  [_unit, _radius] call HSO_fnc_disableLights;
+  private _params = _unit getVariable ["HSO_disableLights", [_unit, ["disableLightsRadius",1000] call BIS_fnc_getParamValue]];
+  _params call HSO_fnc_disableLights;
 }];
-
-
