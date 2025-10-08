@@ -5,7 +5,8 @@ params [
 	["_centre", objNull, [objNull, ""]]
 ];
 
-_obj setVariable ["HSO_disableLightsRadius", _radius];
+if ((_centre isEqualTo objNull) OR (_centre isEqualTo "")) then { _centre = _obj; };
+_obj setVariable ["HSO_disableLights", [_centre,_radius]];
 private _text = "<t color='#E60000'>Disable Lights</t>";
 private _conditionShow = "_this distance _target <= 5 AND (alive _target) AND !(_target getVariable [""HSO_LightsDisabled"", false])";
 private _conditionShow = "_caller distance _target <= 5 AND (alive _target) AND (cursorObject isEqualTo _target)";
@@ -40,7 +41,8 @@ private _conditionShow = "_caller distance _target <= 5 AND (alive _target) AND 
 
 _obj addEventHandler ["Killed", {
 	params ["_unit", "_killer", "_instigator", "_useEffects"];
-  private _radius = _unit getVariable ["HSO_disableLightsRadius", ["disableLightsRadius",1000] call BIS_fnc_getParamValue];
+  private _radius = _unit getVariable ["HSO_disableLights", [_unit, ["disableLightsRadius",1000] call BIS_fnc_getParamValue]];
   [_unit, _radius] call HSO_fnc_disableLights;
 }];
+
 
