@@ -2,7 +2,8 @@ params [
 	["_obj",objNull,[objNull]],
 	["_destroyObj", false, [true]],
 	["_radius", ["disableLightsRadius",1000] call BIS_fnc_getParamValue, [0]],
-	["_centre", objNull, [objNull, ""]]
+	["_centre", objNull, [objNull, ""]],
+	["_duration", 10, [0]]
 ];
 
 if ((_centre isEqualTo objNull) OR (_centre isEqualTo "")) then { _centre = _obj; };
@@ -32,7 +33,7 @@ private _conditionShow = "_caller distance _target <= 5 AND (alive _target) AND 
   }, // Code completed
   {[(rank _caller) + " " + (name _caller), "<t color='#E60000'>I was interrupted... Have to start again...</t>"] remoteExec ["BIS_fnc_showSubtitle", allPlayers, false];}, // Code interrupted
   [_centre, _radius, _destroyObj], // Params
-  10, // Duration
+  _duration, // Duration
   100, // Priority
   false, // Remove completed
   false, // Show unconscious
@@ -44,3 +45,4 @@ _obj addEventHandler ["Killed", {
   private _params = _unit getVariable ["HSO_disableLights", [_unit, ["disableLightsRadius",1000] call BIS_fnc_getParamValue]];
   _params call HSO_fnc_disableLights;
 }];
+
