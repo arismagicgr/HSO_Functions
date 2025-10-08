@@ -1,7 +1,7 @@
 params [
 	["_obj",objNull,[objNull]],
 	["_destroyObj", false, [true]],
-	["_radius", ["disableLightsRadius",1000] call BIS_fnc_getParamValue, [0]],
+	["_radius", ["disableLightsRadiusParam",1000] call BIS_fnc_getParamValue, [0]],
 	["_centre", objNull, [objNull, ""]],
 	["_duration", 10, [0]]
 ];
@@ -45,4 +45,5 @@ _obj addEventHandler ["Killed", {
   private _params = _unit getVariable ["HSO_disableLights", [_unit, ["disableLightsRadius",1000] call BIS_fnc_getParamValue]];
   _params call HSO_fnc_disableLights;
 }];
+
 
