@@ -30,3 +30,9 @@ _id = [
 ] call BIS_fnc_holdActionAdd;
 
 _obj setVariable ["HSO_cutGrassInteractionID", _id];
+] call BIS_fnc_holdActionAdd;
+<<<<<<< HEAD
+
+_obj setVariable ["HSO_cutGrassInteractionID", _id];
+=======
+>>>>>>> origin/Main

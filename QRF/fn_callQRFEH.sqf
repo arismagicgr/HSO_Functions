@@ -4,7 +4,7 @@ params [
   ["_pos", "HSO_QRFspawnPositions", ["", objNull, []], [2,3]], // The position of the spawned group will be spawned
   ["_QRFGroups", "HSO_QRFGroups", [""]], // The unit count of the QRF group
   ["_closestQRF", false, [false]], // If the QRF will spawn from the closest position available
-  ["_canCall", ["canCallQRF", 1] call BIS_fnc_getParamValue, [1]] // Determines if the QRF group can call another QRF if it identifies a player
+  ["_canCall", ["canCallQRFParam", 1] call BIS_fnc_getParamValue, [1]] // Determines if the QRF group can call another QRF if it identifies a player
 ];
 
 // Check if the entity that was passed is local. If it is not, the funciton exit
