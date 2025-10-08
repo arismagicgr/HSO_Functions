@@ -1,5 +1,5 @@
 params [
-	["_obj", objNull, [objNull]],
+  ["_obj", objNull, [objNull]],
   ["_duration", 5, [0]],
   ["_distance", 1, [0]]
 ];
