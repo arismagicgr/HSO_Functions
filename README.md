@@ -3,7 +3,7 @@
 Αυτή είναι η "βιβλιοθήκη functions" που δημιούργησε ο **_A. Ares_** (Άρης) για την **_Hellenic Special Operations_** [**HSO**] ArmA 3 Unit/Community.
 
 Για περισσότερες λεπτομέρειες για τον τρόπο χρήσης και λειτουργίας των **HSO_Functions** που υπάρχουν στην τελευταία έκδοση του project   
-δες το [Wiki]([https://github.com/arismagicgr/HSO_Functions.wiki.git](https://github.com/arismagicgr/HSO_Functions/wiki)) αυτού του repository.
+δες το [Wiki](https://github.com/arismagicgr/HSO_Functions/wiki) αυτού του repository.
 
 Τα functions έχουν χωριστεί σε κατηγορίες ανάλογα με το "είδος", την χρήση ή/και το "αποτέλεσμά" τους.
 
