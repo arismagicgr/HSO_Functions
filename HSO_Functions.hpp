@@ -26,13 +26,5 @@ class HSO_Functions {
     class cutGrass {};
     class cutGrassInteraction {};
   };
-
-  class Cache {
-    file = "HSO_Functions\Cache";
-    class initCacheSystem {};
-    class cacheBatchProcessor {};
-    class addCacheMissionEH {};
-    class addCacheEH {};
-    class addCacheEHToAllGroups {};
-  };
 };
+
