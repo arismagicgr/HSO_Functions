@@ -9,8 +9,8 @@
 
 Οι κατηγορίες που υπάρχουν είναι οι εξής:
 
- - **Ambient**. Με functions που σχετίζονται με την επίδραση και την αλληλεπίδραση με το περιβάλλον.
- - **Compilers**. Βοηθητικά functions που αποθηκεύουν και μερικές φορές επεξεργάζονται αλλά και χρησιμοποιούν πληροφορίες και δεδομένα.
- - **QRF**. Functions που σχετίζονται με το QRF system που έχει αναπτυχθεί για την "αυτοματοποίηση" της κλήσης ενισχύσεων και τμημάτων αμέσου επεμβάσεων από την ΑΙ.
+ - [Ambient](https://github.com/arismagicgr/HSO_Functions/tree/Main/Ambient). Με functions που σχετίζονται με την επίδραση και την αλληλεπίδραση με το περιβάλλον.
+ - [Compilers](https://github.com/arismagicgr/HSO_Functions/tree/Main/Compilers). Βοηθητικά functions που αποθηκεύουν και μερικές φορές επεξεργάζονται αλλά και χρησιμοποιούν πληροφορίες και δεδομένα.
+ - [QRF](https://github.com/arismagicgr/HSO_Functions/tree/Main/QRF). Functions που σχετίζονται με το QRF system που έχει αναπτυχθεί για την "αυτοματοποίηση" της κλήσης ενισχύσεων και τμημάτων αμέσου επεμβάσεων από την ΑΙ.
 
 Τέλος στο [Code](https://github.com/arismagicgr/HSO_Functions) μπορείς να βρεις και μία κατηγορία που ονομάζεται **Mission_Params**. Εκεί θα βρεις παραμέτρους που μπορούν να προστεθούν στο [Description.ext](https://community.bistudio.com/wiki/Description.ext) (βλέπε [CfgFunctions](https://community.bistudio.com/wiki/Description.ext#CfgFunctions) για περισσότερες λεπτομέρειες) της αποστολής σου ώστε να μπορεί ο Διαχειριστής του Server να τροποποιήσει κάποιες παραμέτρους που θα επηρεάσουν τα functions.
