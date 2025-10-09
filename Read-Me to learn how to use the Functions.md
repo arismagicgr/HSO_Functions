@@ -108,7 +108,8 @@ group (π.χ. από το init field του group θα το πάρεις ως "t
 και εκεί να κάνεις #include τις παραμέτρους αυτές. Τελικά θα πρέπει να είναι κάπως έτσι:
 ```cpp
 class Params {
-  #include "HSO_Functions\params\alertTime.hpp"
-  #include "HSO_Functions\params\canCallQRF.hpp"
+  #include "HSO_Functions\params\alertTimeParam.hpp"
+  #include "HSO_Functions\params\canCallQRFParam.hpp"
 };
 ```
+
