@@ -1,6 +1,6 @@
 # HSO_Functions
 
-Αυτή είναι η "βιβλιοθήκη functions" που δημιούργησε ο **_A. Ares_** (Άρης) για την Hellenic Special Operations [HSO] ArmA 3 Unit/Community.
+Αυτή είναι η "βιβλιοθήκη functions" που δημιούργησε ο **_A. Ares_** (Άρης) για την **_Hellenic Special Operations_** [**HSO**] ArmA 3 Unit/Community.
 
 Για περισσότερες λεπτομέρειες για τον τρόπο χρήσης και λειτουργίας των **HSO_Functions** που υπάρχουν στην τελευταία έκδοση του project   
 δες το Wiki αυτού του repository.
