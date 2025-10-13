@@ -7,7 +7,6 @@ params [
   ["_canCall", ["canCallQRFParam", 1] call BIS_fnc_getParamValue, [1]], // Determines if the QRF group can call another QRF if it identifies a player
 ];
 
-private _params = [_grp,_delay,_pos,_QRFGroups,_closestQRF,_canCall];
 private _QRFCalled = false;
 // Delay to give players the chance to neutralise the target
 sleep _delay;
@@ -18,7 +17,7 @@ private _alive = (units _grp) select { alive _x; };
 // Check if all units are dead and exit the function
 if ((count _alive) isEqualTo 0) exitWith {};
 
-// Check if there is at least on unit alive and not incapacitated and call a QRF
+// Check if there is at least one unit alive and not incapacitated and call a QRF
 { if ((lifeState _x) isNotEqualTo "INCAPACITATED") exitWith {
    [_grp, _pos, _QRFGroups, _closestQRF, _canCall] call HSO_fnc_spawnQRF;
    _QRFCalled = true;
@@ -27,5 +26,5 @@ if ((count _alive) isEqualTo 0) exitWith {};
 
 // Else call the function again to start over the process
 if (!(_QRFCalled)) then {
-  _params spawn HSO_fnc_callQRF;
+  _this spawn HSO_fnc_callQRF;
 };
