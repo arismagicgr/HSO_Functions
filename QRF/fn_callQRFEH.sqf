@@ -3,7 +3,7 @@ params [
   ["_delay", ["alertTime",15] call BIS_fnc_getParamValue, [0]], // The time that players will to neutralise the group's units before a QRF is called
   ["_pos", "HSO_QRFspawnPositions", ["", objNull, []], [2,3]], // The position of the spawned group will be spawned
   ["_QRFGroups", "HSO_QRFGroups", [""]], // The unit count of the QRF group
-  ["_closestQRF", false, [false]], // If the QRF will spawn from the closest position available
+  ["_closestQRF", true, [false]], // If the QRF will spawn from the closest position available
   ["_canCall", ["canCallQRFParam", 1] call BIS_fnc_getParamValue, [1]] // Determines if the QRF group can call another QRF if it identifies a player
 ];
 
