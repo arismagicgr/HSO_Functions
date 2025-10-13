@@ -12,7 +12,7 @@ private _leader = leader _grp;
 
 //////////////////////////// SPAWN POSITION ///////////////////////////////////////
 // Find the (closest) QRF spawn position
-_pos = missionNamespace [_pos, []];
+_pos = missionNamespace getVariable [_pos, []];
 
 if ((count _pos) isEqualTo 0) exitWith {
 
@@ -24,22 +24,13 @@ if ((count _pos) isEqualTo 0) exitWith {
 
 // Find the QRF Spawn Position closest to the leader of the group that called QRF. If _closestQRF is set to true, then this will be used as spawn position
 if (_closestQRF) then {
-  // Pick the first position and its distance from leader of the group that called the QRF
-  _closestDistance = _leader distanceSqr (_pos select 0);
-  _spawnPos = _pos select 0;
-
-  // Iterate through all the positions in the _pos array to check if there is any closer
-  // And if there is one, discard the old one and keep the new one
-  {
-    private _dis = _x distanceSqr _leader;
-    if (_dis <= _closestDistance) then {
-      _closestDistance = _dis;
-      _spawnPos = _x;
-    };
-  } forEach _pos;
+  
+  private _sortedArr = [_pos, [_leader], { _x distance _input0; }, "ASCEND"] call BIS_fnc_sortBy;
+  _pos = _sortedArr select 0;
+  _sortedArr deleteAt (_sortedArr find _closest);
 } else {
   // Else, choose a random one
-  _spawnPos = selectRandom _pos;
+  _pos = selectRandom _pos;
 };
 
 // Get all possible QRF Groups to randomly choose one and get the data to be used to spawn the group with the specific loadouts for its units
@@ -63,7 +54,7 @@ private _QRFGrp = createGroup (side _grp);
   private _class = _x select 0;
   private _ld = _x select 1;
 
-  private _newUnit = _QRFGrp createUnit [_class, _spawnPos, [], 5, "NONE"];
+  private _newUnit = _QRFGrp createUnit [_class, _pos, [], 5, "NONE"];
   _newUnit setUnitLoadout _ld;
 
 } forEach _QRFGrpData;
@@ -72,14 +63,14 @@ private _QRFGrp = createGroup (side _grp);
 
 // Code to be executed when the waypoint gets completed
 private _onCompleted = str {
-  if (!local this) exitWith {}; (group this) enableDynamicSimulation true; [group this, [getPosATL this, 100, 100, 0, false]] call CBA_fnc_taskSearchArea;
+  if (!local this) exitWith {}; (group this) enableDynamicSimulation true; [group this, getPosATL this, 100] call BIS_fnc_taskPatrol;
   };
 
 // The actual waypoint
 private _wp = _QRFGrp addWaypoint [getPosATL _leader, 30, -1, "QRFWaypoint"];
 _wp setWaypointType "SAD"; // Type "Search And Destroy"
 _wp setWaypointBehaviour "AWARE"; // Behaviour "AWARE"
-_wp setWaypointSpeed "FULL";
+_wp setWaypointSpeed "NORMAL";
 _wp setWaypointCombatMode "YELLOW"; // Combat Mode "Fire At Will, Keep Formation"
 _wp setWaypointStatements ["true", _onCompleted]; // The waypoint's statement
 
