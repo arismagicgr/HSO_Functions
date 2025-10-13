@@ -1,4 +1,4 @@
-if !(isServer) exitWith { "The function is executed only in the Server"; };
+if (!isServer) exitWith { "The function is executed only in the Server"; };
 {
   private _addEH = true;
   private _grp = _x
