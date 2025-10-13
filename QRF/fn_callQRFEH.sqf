@@ -7,11 +7,13 @@ params [
   ["_canCall", ["canCallQRFParam", 1] call BIS_fnc_getParamValue, [1]] // Determines if the QRF group can call another QRF if it identifies a player
 ];
 
-// Check if the entity that was passed is local. If it is not, the funciton exit
+// Check if the entity that was passed is local. If it is not, the functton exits
 if !(local _group) exitWith { "The function is meant to be executed only where group/unit is local." };
 
 // If the entity that was passed is a unit, the group of the unit is "taken"
 if (_group isEqualType objNull) then { _group = group _group; };
+
+if (_group getVariable ["enemyDetectedEHAdded, false]) exitWith { "This group already has an ""Enemy Detected EH"". No EH was added"; };
 
 // The function params are added in group's namespace to be available to EH code
 _this = [_group, _delay, _pos, _QRFGroups, _closestQRF, _canCall];
@@ -34,3 +36,8 @@ _group addEventHandler ["EnemyDetected", {
     _params call HSO_fnc_callQRF;
   };
 }];
+
+// Add a "flag" in group's namespace to avoid adding another "EnemyDetected" EH
+_group setVariable ["enemyDetectedEHAdded", true];
+
+true;
