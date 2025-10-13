@@ -13,7 +13,7 @@ if !(local _group) exitWith { "The function is meant to be executed only where g
 // If the entity that was passed is a unit, the group of the unit is "taken"
 if (_group isEqualType objNull) then { _group = group _group; };
 
-if (_group getVariable ["enemyDetectedEHAdded, false]) exitWith { "This group already has an ""Enemy Detected EH"". No EH was added"; };
+if (_group getVariable ["enemyDetectedEHAdded, false]) exitWith { "This group already has an "Enemy Detected EH". No EH was added"; };
 
 // The function params are added in group's namespace to be available to EH code
 _this = [_group, _delay, _pos, _QRFGroups, _closestQRF, _canCall];
@@ -41,3 +41,4 @@ _group addEventHandler ["EnemyDetected", {
 _group setVariable ["enemyDetectedEHAdded", true];
 
 true;
+
