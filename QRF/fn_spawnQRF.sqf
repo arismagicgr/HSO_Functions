@@ -6,9 +6,6 @@ params [
   ["_canCall", ["canCallQRFParam", 1] call BIS_fnc_getParamValue, [1]]
 ];
 
-// Get the leader of the group to do the calculations and get the position for the waypoint
-private _leader = leader _grp;
-
 
 //////////////////////////// SPAWN POSITION ///////////////////////////////////////
 // Find the (closest) QRF spawn position
@@ -24,10 +21,7 @@ if ((count _pos) isEqualTo 0) exitWith {
 
 // Find the QRF Spawn Position closest to the leader of the group that called QRF. If _closestQRF is set to true, then this will be used as spawn position
 if (_closestQRF) then {
-  
-  private _sortedArr = [_pos, [_leader], { _x distance _input0; }, "ASCEND"] call BIS_fnc_sortBy;
-  _pos = _sortedArr select 0;
-  _sortedArr deleteAt (_sortedArr find _closest);
+    _pos = [_pos, _grp] call BIS_fnc_nearestPosition;
 } else {
   // Else, choose a random one
   _pos = selectRandom _pos;
@@ -67,7 +61,7 @@ private _onCompleted = str {
   };
 
 // The actual waypoint
-private _wp = _QRFGrp addWaypoint [getPosATL _leader, 30, -1, "QRFWaypoint"];
+private _wp = _QRFGrp addWaypoint [getPosATL (leader _grp), 30, -1, "QRFWaypoint"];
 _wp setWaypointType "SAD"; // Type "Search And Destroy"
 _wp setWaypointBehaviour "AWARE"; // Behaviour "AWARE"
 _wp setWaypointSpeed "NORMAL";
