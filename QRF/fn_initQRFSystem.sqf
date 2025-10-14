@@ -21,7 +21,7 @@ private _id = addMissionEventHandler ["GroupCreated", {
 
 		if (_addEH) then {
 			private _params = missionNamespace getVariable ["HSO_QRFGroupCreatedEHParams", []];
-			_params = [_grp] append _params;
+			_params = [_grp] + _params;
 			_params call HSO_fnc_callQRFEH;
 		};
 	};
