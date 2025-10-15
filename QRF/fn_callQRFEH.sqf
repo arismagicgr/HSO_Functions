@@ -21,10 +21,10 @@ _group setVariable ["enemyDetectedEHParams", _this];
 
 
 // Adds an EH to the group to execute the QRF function when an enemy is detected
-_group addEventHandler ["EnemyDetected", {
+private _id = _group addEventHandler ["EnemyDetected", {
 	params ["_grp", "_target"];
 
-  // Checks if the side of the identified target is enemy, if the mission maker wants the target to be a player and if the variable to disable the ability of the unit to call QRF is enabled
+  // Checks if the variable to disable the ability of the unit to call QRF is enabled
   if (_grp getVariable ["canCallQRF", true]) then {
     // Get the params of the function to pass them to the spawn QRF function
     private _params = _grp getVariable ["enemyDetectedEHParams", []];
@@ -43,6 +43,11 @@ _group addEventHandler ["EnemyDetected", {
 // Add a "flag" in group's namespace to avoid adding another "EnemyDetected" EH
 _group setVariable ["enemyDetectedEHAdded", true];
 
+// Store the EH ID in group's namespace to be available for deletion later if needed
+_group setVariable ["enemyDetectedEHID", ["EnemyDetected", _id]];
+
 true;
+
+
 
 

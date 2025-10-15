@@ -20,7 +20,7 @@ if ((count _pos) isEqualTo 0) exitWith {
 };
 
 // Find the QRF Spawn Position closest to the leader of the group that called QRF. If _closestQRF is set to true, then this will be used as spawn position
-if (_closestQRF) then {
+if (_closestQRF isEqualTo 1) then {
     _pos = [_pos, _grp] call BIS_fnc_nearestPosition;
 } else {
   // Else, choose a random one
@@ -73,4 +73,5 @@ private _text = ["[FROM ENEMY RADIO]","<t color='#E60000'>[ENEMY HQ] Roger that.
 _text remoteExecCall ["BIS_fnc_showSubtitle", allPlayers select { (_x distance (leader _grp)) <= 50; }, false];
 
 // If the mission params are set, the QRF Group will be able to call for a QRF Group itself
+
 if (_canCall isEqualTo 1) then { [_QRFGrp] call HSO_fnc_callQRFEH; };
