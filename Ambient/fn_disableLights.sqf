@@ -1,5 +1,5 @@
 params [
-  ["_source", objNull, [objNull, ""]],
+  ["_source", objNull, [objNull, "",[]],[2,3]],
   ["_radius", ["disableLightsRadiusParam",1000] call BIS_fnc_getParamValue, [0]]
 ];
 
