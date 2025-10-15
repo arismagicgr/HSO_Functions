@@ -44,9 +44,10 @@ private _id = _group addEventHandler ["EnemyDetected", {
 _group setVariable ["enemyDetectedEHAdded", true];
 
 // Store the EH ID in group's namespace to be available for deletion later if needed
-_group setVariable ["enemyDetectedEHID, ["EnemyDetected", _id]];
+_group setVariable ["enemyDetectedEHID", ["EnemyDetected", _id]];
 
 true;
+
 
 
 
