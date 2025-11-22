@@ -32,11 +32,17 @@ if (_closestQRF isEqualTo 1) then {
   _pos = selectRandom _pos;
 };
 
+
+
+/*==================================== SPAWN QRF GROUP ====================================*/
+
+
 // Get all possible QRF Groups to randomly choose one and get the data to be used to spawn the group with the specific loadouts for its units
-private _allGrp = missionNamespace getVariable [_QRFGroups, createHashMap];
+private _hash = missionNamespace getVariable [_QRFGroups, createHashMap];
+private _allGrp = keys _hash;
 
 // If the group does not exist exit the function
-if ((isNil "_allGrp") OR ((count (keys _allGrp)) isEqualTo 0)) exitWith {
+if ((isNil "_hash") OR ((count _allGrp) isEqualTo 0)) exitWith {
 
 private _text = ["[FROM ENEMY RADIO]","<t color='#E60000'>[ENEMY HQ] Negative, there no available units to send...</t>"];
 // If there is not a position available to spawn the group, inform the players near the leader of the group and exit the script
@@ -44,12 +50,8 @@ _text remoteExec ["BIS_fnc_showSubtitle", (allPlayers distance (leader _grp)) <=
 
 };
 
-
-
-/*======================== SPAWN QRF GROUP ====================================*/
-
-// Get the data of a randomly selected QRF Group from the pool created with a fnc_groupCompiler instance
-private _QRFGrpData = [_allGrp] call HSO_fnc_getQRFGroup;
+private _randomGrp = selectRandom _allGrp;
+private _QRFGrpData = _randomGrp get _hash;
 
 
 private _QRFGrp = createGroup (side _grp);
