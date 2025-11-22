@@ -15,8 +15,6 @@ private "_sideGrp" = [];
 
 
 // For each group, add the event handler that will handle the QRF logic when the group is created
-
-
 {
 
   {
