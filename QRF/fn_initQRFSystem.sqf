@@ -11,7 +11,8 @@ params [
 ];
 
 // Store the params in missionNamespace to be available to the EH code
-missionNamespace setVariable ["HSO_QRFGroupCreatedEHParams", _this, true];
+private _params = [_affectedSides, _delay, _pos, _QRFGroups, _closestQRF, _canCall];
+missionNamespace setVariable ["HSO_QRFGroupCreatedEHParams", _params, true];
 
 /*==================================== GROUP CREATED EH ADDITION ====================================*/
 
@@ -21,6 +22,10 @@ private _id = addMissionEventHandler ["GroupCreated", {
 	
 	private _handler = [] spawn {
 		
+		private _params = missionNamespace getVariable ["HSO_QRFGroupCreatedEHParams", []]; // Get the params stored in missionNamespace
+		if !((side _grp) in (_params select 0)) exitWith { terminate _thisScript; }; // Check if the side of the created group is one of the affected sides
+		_params deleteAt 0; // Remove the affected sides from the params array to pass only the needed ones to the function below
+
 		sleep 30; // Wait 5 seconds to ensure the group is fully created
 
 		private _addEH = true;
@@ -31,7 +36,6 @@ private _id = addMissionEventHandler ["GroupCreated", {
 		if !(_grp getVariable ["includeGrpToQRFSystem", true]) exitWith { terminate _thisScript; };
 
 		if (_addEH) then {
-			private _params = missionNamespace getVariable ["HSO_QRFGroupCreatedEHParams", []];
 			_params = [_grp] + _params;
 			_params call HSO_fnc_callQRFEH;
 		};
@@ -39,3 +43,10 @@ private _id = addMissionEventHandler ["GroupCreated", {
 }];
 
 missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", ["GroupCreated", _id], true];
+
+
+// Check if pre-placed groups should be initialised for the QRF system
+if (! _affectPrePlacedGrp) exitWith {};
+
+/*==================================== INITIALISE PRE-PLACED GROUPS ====================================*/
+[_affectedSides] call HSO_fnc_initQRFSystemForPreplacedGrp;
