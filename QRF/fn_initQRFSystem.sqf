@@ -23,25 +23,36 @@ private _id = addMissionEventHandler ["GroupCreated", {
 	private _handler = [] spawn {
 		
 		private _params = missionNamespace getVariable ["HSO_QRFGroupCreatedEHParams", []]; // Get the params stored in missionNamespace
-		if !((side _grp) in (_params select 0)) exitWith { terminate _thisScript; }; // Check if the side of the created group is one of the affected sides
-		_params deleteAt 0; // Remove the affected sides from the params array to pass only the needed ones to the function below
 
-		sleep 30; // Wait 5 seconds to ensure the group is fully created
+		// Check if the side of the created group is one of the affected sides and if it is not, exit the script
+		if ( not ((side _grp) in (_params select 0)) ) exitWith { terminate _thisScript; }; 
 
-		private _addEH = true;
+
+		// Remove the affected sides from the params array to pass only the needed ones to the function below
+		_params deleteAt 0; 
+
+		sleep 30; // Wait 30 seconds to ensure the group is fully created
+
+		// Check if the group already has the EH added. If it has, exit the script
+		private _EHAdded = _grp getVariable ["EnemyDetectedEHID", nil];
+		if ( not (isNil "_EHAdded") ) exitWith { terminate _thisScript; }; 
+
+
+		// Check if the group is set to be included in the QRF system. If not, exit the script
+		if ( not (_grp getVariable ["includeGrpToQRFSystem", true]) ) exitWith { terminate _thisScript; }; 
+
+		// Check if there is any player in the group. If there is, exit the script
 		{
-			if (isPlayer _x) exitWith { _addEH = false; };
+			if (isPlayer _x) exitWith { terminate _thisScript; }; 
 		} count (units _grp);
 
-		if !(_grp getVariable ["includeGrpToQRFSystem", true]) exitWith { terminate _thisScript; };
-
-		if (_addEH) then {
-			_params = [_grp] + _params;
-			_params call HSO_fnc_callQRFEH;
-		};
+		// If all the checkes are passed, call the function to add the EH
+		_params = [_grp] + _params; // Add the group to the params array
+		_params call HSO_fnc_callQRFEH; // Call the function to add the EH
 	};
 }];
 
+// Store the EH ID in missionNamespace to be available for deletion later if needed
 missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", ["GroupCreated", _id], true];
 
 
@@ -49,4 +60,5 @@ missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", ["GroupCreated", _id], 
 if (! _affectPrePlacedGrp) exitWith {};
 
 /*==================================== INITIALISE PRE-PLACED GROUPS ====================================*/
+// Call the function to initialise pre-placed groups for the QRF system
 [_affectedSides] call HSO_fnc_initQRFSystemForPreplacedGrp;
