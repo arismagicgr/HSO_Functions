@@ -10,7 +10,7 @@ params [
 
 /*============================================= CHECKS =====================================================================*/
 // Check if the entity that was passed is local. If it is not, the functton exits
-if !(local _grp) exitWith { diag_log "The function is meant to be executed only where group/unit is local."; };
+if ( not (local _grp) ) exitWith { diag_log "The function is meant to be executed only where group/unit is local."; };
 
 // If the entity that was passed is a unit, the group of the unit is "taken"
 if (_grp isEqualType objNull) then { _grp = group _grp; };

@@ -68,7 +68,7 @@ private _QRFGrp = createGroup (side _grp);
 
 // Code to be executed when the waypoint gets completed
 private _onCompleted = str {
-  if (!local this) exitWith {}; (group this) enableDynamicSimulation true; [group this, getPosATL this, 100] call BIS_fnc_taskPatrol;
+  if ( not (local this) ) exitWith {}; (group this) enableDynamicSimulation true; [group this, getPosATL this, 100] call BIS_fnc_taskPatrol;
   };
 
 // The actual waypoint

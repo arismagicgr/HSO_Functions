@@ -1,4 +1,4 @@
-if (!isServer) exitWith { "The function is executed only in the Server"; };
+if (not isServer) exitWith { diag_log "The HSO_fnc_initQRFSystem function is executed only in the Server"; };
 
 params [
 	["_affectedSides", [east, independent], [], [1,2,3,4]],
@@ -57,7 +57,7 @@ missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", ["GroupCreated", _id], 
 
 
 // Check if pre-placed groups should be initialised for the QRF system
-if (! _affectPrePlacedGrp) exitWith {};
+if (not _affectPrePlacedGrp) exitWith {};
 
 /*==================================== INITIALISE PRE-PLACED GROUPS ====================================*/
 // Call the function to initialise pre-placed groups for the QRF system
