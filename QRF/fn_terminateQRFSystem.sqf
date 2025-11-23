@@ -13,9 +13,9 @@ missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", nil, true]; // Clear th
 private _allGrp = allGroups select { (side _x) in _affectedSides; }; // Get all groups of the affected sides
 
 {
-    private _id = _x getVariable ["EnemyDetectedEHID", nil];
+    private _id = _x getVariable ["HSO_EnemyDetectedEHID", nil];
     if ( not (isNil "_id")) then {
         _x removeEventHandler _id;
-        _x setVariable ["EnemyDetectedEHID", nil, true];
+        _x setVariable ["HSO_EnemyDetectedEHID", nil, true];
     };
 } forEach _allGrp;

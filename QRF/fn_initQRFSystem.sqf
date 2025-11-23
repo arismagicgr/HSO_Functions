@@ -34,7 +34,7 @@ private _id = addMissionEventHandler ["GroupCreated", {
 		sleep 30; // Wait 30 seconds to ensure the group is fully created
 
 		// Check if the group already has the EH added. If it has, exit the script
-		private _EHAdded = _grp getVariable ["EnemyDetectedEHID", nil];
+		private _EHAdded = _grp getVariable ["HSO_EnemyDetectedEHID", nil];
 		if ( not (isNil "_EHAdded") ) exitWith { terminate _thisScript; }; 
 
 

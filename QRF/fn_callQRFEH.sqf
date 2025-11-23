@@ -16,10 +16,11 @@ if ( not (local _grp) ) exitWith { diag_log "The function is meant to be execute
 if (_grp isEqualType objNull) then { _grp = group _grp; };
 
 // Check if the group already has an "Enemy Detected" EH. If it has, exit the function
-if (_grp getVariable ["enemyDetectedEHAdded", false]) exitWith { diag_log (format ["%1 group already has an ""Enemy Detected EH"". No EH was added", _grp]); };
+private _EHAdded = _grp getVariable ["HSO_EnemyDetectedEHID", nil];
+if (not (isNil "_EHAdded")) exitWith { diag_log (format ["%1 group already has an ""Enemy Detected EH"". No EH was added", _grp]); };
 
 // Check if the group is set to be included in the QRF system. If not, exit the function
-if !(_grp getVariable ["includeGrpToQRFSystem", true]) exitWith { diag_log (format ["%1 group is set to not be included in QRF system. No EH was added", _grp]); };
+if ( not (_grp getVariable ["includeGrpToQRFSystem", true])) exitWith { diag_log (format ["%1 group is set to not be included in QRF system. No EH was added", _grp]); };
 
 // The function params are added in group's namespace to be available to EH code
 _this = [_grp, _delay, _pos, _QRFGroups, _closestQRF, _canCall];
@@ -45,10 +46,7 @@ private _id = _grp addEventHandler ["EnemyDetected", {
   };
 }];
 
-// Add a "flag" in group's namespace to avoid adding another "EnemyDetected" EH
-_grp setVariable ["enemyDetectedEHAdded", true];
-
 // Store the EH ID in group's namespace to be available for deletion later if needed
-_grp setVariable ["enemyDetectedEHID", ["EnemyDetected", _id]];
+_grp setVariable ["HSO_EnemyDetectedEHID", ["EnemyDetected", _id]];
 
 [true, _grp, ["EnemyDetected", _id]];
