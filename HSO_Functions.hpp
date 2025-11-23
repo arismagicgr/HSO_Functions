@@ -9,6 +9,7 @@ class HSO_Functions {
     class callQRFEH {};
     class callQRF {};
     class spawnQRF {};
+    class terminateQRFSystem {};
   };
 
   class Compilers {
