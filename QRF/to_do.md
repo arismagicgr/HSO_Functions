@@ -4,3 +4,4 @@
   - Να διαγράφει τη μεταβλητή με το ID του ΕΗ στο namespace του group.
   - Πιθανά θα μπορέσει να χρησιμοποιηθεί και στον κώδικα του HSO_fnc_terminateQRFSystem όταν ολοκληρωθεί, σε μία forEach "λούπα".
 - Να αποθηκεύω τα ID των mission EHs σε array στην ήδη υπάρχουσα μεταβλητή στο missionNamespace για να μπορώ με το HSO_fnc_terminateQRFSystem να διαγράφω όλα τα mission EHs!
+- Να προσθέσω τρόπο χρήσης και λειτουργίας για κάθε κατηγορία function (και ειδικά για το QRF System) στο Wiki, στην αρχή κάθε ενότητας πριν τα functions.
