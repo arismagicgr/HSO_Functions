@@ -2,7 +2,7 @@ if (not isServer) exitWith { diag_log "The HSO_fnc_initQRFSystem function is exe
 
 params [
 	["_affectedSides", [east, independent], [], [1,2,3,4]],
-	["_affectPrePlacedGrp", true, [true]],
+	["_affectPreplacedGrp", true, [true]],
 	["_delay", 10["alertTimeParam",15] call BIS_fnc_getParamValue, [0]],
 	["_pos", "HSO_QRFspawnPositions", ["", objNull, []], [2,3]],
 	["_QRFGroups", "HSO_QRFGroups", [""]],
@@ -57,8 +57,8 @@ missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", ["GroupCreated", _id], 
 
 
 // Check if pre-placed groups should be initialised for the QRF system
-if (not _affectPrePlacedGrp) exitWith {};
+if (not _affectPreplacedGrp) exitWith {};
 
 /*==================================== INITIALISE PRE-PLACED GROUPS ====================================*/
 // Call the function to initialise pre-placed groups for the QRF system
-[_affectedSides] call HSO_fnc_initQRFSystemForPreplacedGrp;
+_params call HSO_fnc_initQRFSystemForPreplacedGrp;
