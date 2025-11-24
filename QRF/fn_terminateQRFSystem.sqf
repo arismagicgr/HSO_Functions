@@ -12,10 +12,11 @@ missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", nil, true]; // Clear th
 /*==================================== REMOVE ENEMY DETECTED EH FROM ALL GROUPS ====================================*/
 private _allGrp = allGroups select { (side _x) in _affectedSides; }; // Get all groups of the affected sides
 
+// Loop through all groups and remove the "Enemy Detected" EH if it exists
 {
-    private _id = _x getVariable ["HSO_EnemyDetectedEHID", nil];
+    private _id = _x getVariable ["HSO_QRFEnemyDetectedEHID", nil]; // Get the EH ID stored in the group
     if ( not (isNil "_id")) then {
-        _x removeEventHandler _id;
-        _x setVariable ["HSO_EnemyDetectedEHID", nil, true];
+        _x removeEventHandler _id; // Remove the EH from the group
+        _x setVariable ["HSO_QRFEnemyDetectedEHID", nil, true]; // Clear the EH ID stored in the group
     };
 } forEach _allGrp;

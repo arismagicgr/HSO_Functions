@@ -16,7 +16,7 @@ if ( not (local _grp) ) exitWith { diag_log "The function is meant to be execute
 if (_grp isEqualType objNull) then { _grp = group _grp; };
 
 // Check if the group already has an "Enemy Detected" EH. If it has, exit the function
-private _EHAdded = _grp getVariable ["HSO_EnemyDetectedEHID", nil];
+private _EHAdded = _grp getVariable ["HSO_QRFEnemyDetectedEHID", nil];
 if (not (isNil "_EHAdded")) exitWith { diag_log (format ["%1 group already has an ""Enemy Detected EH"". No EH was added", _grp]); };
 
 // Check if the group is set to be included in the QRF system. If not, exit the function
@@ -24,7 +24,7 @@ if ( not (_grp getVariable ["includeGrpToQRFSystem", true])) exitWith { diag_log
 
 // The function params are added in group's namespace to be available to EH code
 _this = [_grp, _delay, _pos, _QRFGroups, _closestQRF, _canCall];
-_grp setVariable ["enemyDetectedEHParams", _this];
+_grp setVariable ["HSO_QRFEnemyDetectedEHParams", _this];
 
 
 
@@ -36,7 +36,7 @@ private _id = _grp addEventHandler ["EnemyDetected", {
   // Checks if the variable to disable the ability of the unit to call QRF is enabled
   if (_grp getVariable ["canCallQRF", true]) then {
     // Get the params of the function to pass them to the spawn QRF function
-    private _params = _grp getVariable ["enemyDetectedEHParams", []];
+    private _params = _grp getVariable ["HSO_QRFEnemyDetectedEHParams", []];
     
     // Removes the EH so it will trigger only once. The rest will be handled by the function below
     _grp removeEventHandler [_thisEvent, _thisEventHandler];
@@ -47,6 +47,6 @@ private _id = _grp addEventHandler ["EnemyDetected", {
 }];
 
 // Store the EH ID in group's namespace to be available for deletion later if needed
-_grp setVariable ["HSO_EnemyDetectedEHID", ["EnemyDetected", _id]];
+_grp setVariable ["HSO_QRFEnemyDetectedEHID", ["EnemyDetected", _id]];
 
 [true, _grp, ["EnemyDetected", _id]];

@@ -35,7 +35,7 @@ private _sideGrp = []; // Initialize array that will store groups of a side
     if ( not (_grp getVariable ["includeGrpToQRFSystem", true]) ) exitWith { continue; }; 
 
     // Check if the group already has the EH added. Continue to next group if it has
-    private _EHAdded = _x getVariable ["HSO_EnemyDetectedEHID", nil];
+    private _EHAdded = _x getVariable ["HSO_QRFEnemyDetectedEHID", nil];
     if ( not (isNil _EHAdded) ) exitWith { continue; };
 
 
