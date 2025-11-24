@@ -1,4 +1,4 @@
-if !(isServer) exitWith { "The function is executed only in the Server"; };
+if (not isServer) exitWith { "The function is executed only in the Server"; };
 params [
   ["_obj", objNull,[objNull]],
   ["_varName", "HSO_QRFspawnPositions", [""]]

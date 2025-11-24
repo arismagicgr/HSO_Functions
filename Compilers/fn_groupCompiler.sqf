@@ -1,4 +1,4 @@
-if !(isServer) exitWith { "The function is executed only in the Server"; };
+if (not isServer) exitWith { "The function is executed only in the Server"; };
 params [
   ["_logic", objNull,[objNull]],
   ["_varName", "HSO_QRFGroups", [""]]

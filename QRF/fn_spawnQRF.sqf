@@ -11,13 +11,18 @@ params [
 // Find the (closest) QRF spawn position
 _pos = missionNamespace getVariable [_pos, []];
 
+
+// Remove all positions that are too close to any player (200m)
+_pos = _pos select { (([allPlayers, _x] call BIS_fnc_nearestPosition) distance _x) >= 200; };
+
 if ((count _pos) isEqualTo 0) exitWith {
 
   private _text = ["[FROM ENEMY RADIO]","<t color='#E60000'>[ENEMY HQ] Negative, is not possible to send QRF...</t>"];
   // If there is not a position available to spawn the group, inform the players near the leader of the group and exit the script
-  _text remoteExec ["BIS_fnc_showSubtitle", (allPlayers distance (leader _grp)) <= 50, false];
-
+  _text remoteExec ["BIS_fnc_showSubtitle", allPlayers select { (_x distance (leader _grp)) <= 50; }, false];
 };
+
+
 
 // Find the QRF Spawn Position closest to the leader of the group that called QRF. If _closestQRF is set to true, then this will be used as spawn position
 if (_closestQRF isEqualTo 1) then {
@@ -27,11 +32,17 @@ if (_closestQRF isEqualTo 1) then {
   _pos = selectRandom _pos;
 };
 
+
+
+/*==================================== SPAWN QRF GROUP ====================================*/
+
+
 // Get all possible QRF Groups to randomly choose one and get the data to be used to spawn the group with the specific loadouts for its units
-private _allGrp = missionNamespace getVariable [_QRFGroups, createHashMap];
+private _hash = missionNamespace getVariable [_QRFGroups, createHashMap];
+private _allGrp = keys _hash;
 
 // If the group does not exist exit the function
-if ((isNil "_allGrp") OR ((count (keys _allGrp)) isEqualTo 0)) exitWith {
+if ((isNil "_hash") OR ((count _allGrp) isEqualTo 0)) exitWith {
 
 private _text = ["[FROM ENEMY RADIO]","<t color='#E60000'>[ENEMY HQ] Negative, there no available units to send...</t>"];
 // If there is not a position available to spawn the group, inform the players near the leader of the group and exit the script
@@ -39,10 +50,10 @@ _text remoteExec ["BIS_fnc_showSubtitle", (allPlayers distance (leader _grp)) <=
 
 };
 
-// Get the data of a randomly selected QRF Group from the pool created with a fnc_groupCompiler instance
-private _QRFGrpData = [_allGrp] call HSO_fnc_getQRFGroup;
+private _randomGrp = selectRandom _allGrp;
+private _QRFGrpData = _randomGrp get _hash;
 
-/*======================== SPAWN QRF GROUP ====================================*/
+
 private _QRFGrp = createGroup (side _grp);
 {
   private _class = _x select 0;
@@ -53,11 +64,11 @@ private _QRFGrp = createGroup (side _grp);
 
 } forEach _QRFGrpData;
 
-// Create the waypoint for the group
+/*================================= CREATE THE WAYPOINT FOR THE GROUP====================================*/ 
 
 // Code to be executed when the waypoint gets completed
 private _onCompleted = str {
-  if (!local this) exitWith {}; (group this) enableDynamicSimulation true; [group this, getPosATL this, 100] call BIS_fnc_taskPatrol;
+  if ( not (local this) ) exitWith {}; (group this) enableDynamicSimulation true; [group this, getPosATL this, 100] call BIS_fnc_taskPatrol;
   };
 
 // The actual waypoint

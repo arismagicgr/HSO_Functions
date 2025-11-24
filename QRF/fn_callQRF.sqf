@@ -25,6 +25,6 @@ if ((count _alive) isEqualTo 0) exitWith {};
 } count _alive;
 
 // Else call the function again to start over the process
-if (!(_QRFCalled)) then {
+if ( not (_QRFCalled) ) then {
   _this spawn HSO_fnc_callQRF;
 };

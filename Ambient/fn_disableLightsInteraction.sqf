@@ -9,7 +9,7 @@ params [
 if ((_centre isEqualTo objNull) OR (_centre isEqualTo "")) then { _centre = _obj; };
 _obj setVariable ["HSO_disableLights", [_centre,_radius]];
 private _text = "<t color='#E60000'>Disable Lights</t>";
-private _conditionShow = "_this distance _target <= 5 AND (alive _target) AND !(_target getVariable [""HSO_LightsDisabled"", false])";
+private _conditionShow = "_this distance _target <= 5 AND (alive _target) AND (not (_target getVariable [""HSO_LightsDisabled"", false]))";
 private _conditionShow = "_caller distance _target <= 5 AND (alive _target) AND (cursorObject isEqualTo _target)";
 
 
