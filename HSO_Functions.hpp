@@ -4,10 +4,11 @@ class HSO_Functions {
 
   class QRF {
     file = "HSO_Functions\QRF";
-    class initQRFSystem {};
-    class initQRFSystemForPreplacedGroups {};
-    class callQRFEH {};
     class callQRF {};
+    class callQRFEH {};
+    class initQRFSystem {};
+    class initQRFSystemForPreplacedGrp {};
+    class removeGrpFromQRFSystem {};
     class spawnQRF {};
     class terminateQRFSystem {};
   };
