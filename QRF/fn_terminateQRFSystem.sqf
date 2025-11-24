@@ -5,9 +5,19 @@ params [
 ];
 /*==================================== REMOVE GROUP CREATED EH ====================================*/
 
-private _EHData = missionNamespace getVariable ["HSO_QRFGroupCreatedEHID", nil]; // Get the EH data stored in missionNamespace
-removeMissionEventHandler _EHData; // Remove the EH
-missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", nil, true]; // Clear the EH data stored in missionNamespace
+// Get all existing EH IDs stored in missionNamespace
+private _EHIDs = missionNamespace getVariable ["HSO_QRFGroupCreatedEHID", nil];
+
+if ( not (isNil "_EHIDs") ) then {
+    // Loop through all EH IDs and remove them
+    {
+        removeMissionEventHandler _x;
+    } forEach _EHIDs;
+
+    // Clear the EH IDs stored in missionNamespace
+    missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", nil, true];
+};
+
 
 /*==================================== REMOVE ENEMY DETECTED EH FROM ALL GROUPS ====================================*/
 private _allGrp = allGroups select { (side _x) in _affectedSides; }; // Get all groups of the affected sides
