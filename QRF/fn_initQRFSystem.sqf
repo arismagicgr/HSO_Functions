@@ -52,8 +52,15 @@ private _id = addMissionEventHandler ["GroupCreated", {
 	};
 }];
 
-// Store the EH ID in missionNamespace to be available for deletion later if needed
-missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", ["GroupCreated", _id], true];
+
+// Get all existing EH IDs stored in missionNamespace
+private _EHIDs = missionNamespace getVariable ["HSO_QRFGroupCreatedEHID", []];
+
+// Add the newly created EH ID to the array
+_EHIDs pushBack _id;
+
+// Store the updated array back in missionNamespace
+missionNamespace setVariable ["HSO_QRFGroupCreatedEHID", _EHIDs, true];
 
 
 // Check if pre-placed groups should be initialised for the QRF system
