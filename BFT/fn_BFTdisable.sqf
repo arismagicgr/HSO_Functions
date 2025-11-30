@@ -11,6 +11,9 @@ if ( isNil _script ) exitWith { diag_Log "No BFT script handler found for this p
 // If script handler is found, terminate the script
 terminate _script;
 
+// Clear the script handler variable
+_player setVariable ["HSO_BFTScriptHandler", nil];
+
 // Get all existing markers for this player
 private _markers = _player getVariable ["HSO_BFTMarkers", []];
 
