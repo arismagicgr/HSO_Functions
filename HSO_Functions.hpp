@@ -28,5 +28,14 @@ class HSO_Functions {
     class cutGrass {};
     class cutGrassInteraction {};
   };
+
+  class BFT {
+    file = "HSO_Functions\BFT";
+    class BFTinit {};
+    class BFTenable {};
+    class BFTdisable {};
+    class BFTenableHoldAction {};
+    class BFTdisableHoldAction {};
+  };
 };
 
