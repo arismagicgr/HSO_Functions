@@ -10,6 +10,9 @@ if ( not (local _player) ) exitWith { diag_log "The HSO_fnc_BFTcreateMarkersLoca
 // Prevent multiple instances of the script for the same player
 if ( not (isNil (_player getVariable ["HSO_BFTScriptHandler", nil]))) exitWith { diag_log "The HSO_fnc_BFTcreateMarkersLocal is already running for this player"; };
 
+// Store the script handler in a player variable for potential future use
+_player setVariable ["HSO_BFTScriptHandler", _thisScript];
+
 // Main loop to continuously update markers
 while { true } do {
 
@@ -109,6 +112,3 @@ while { true } do {
 
     sleep _interval; // Wait for the specified interval before updating again
 };
-
-// Store the script handler in a player variable for potential future use
-_player setVariable ["HSO_BFTScriptHandler", _thisScript];
