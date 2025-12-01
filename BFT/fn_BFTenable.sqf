@@ -5,10 +5,10 @@ params [
 ];
 
 // Ensure the script runs only where the player is local
-if ( not (local _player) ) exitWith { diag_log "The HSO_fnc_BFTcreateMarkersLocal is executed only where the ""player"" is local"; };
+if ( not (local _player) ) exitWith { diag_log "The HSO_fnc_BFTenable is executed only where the ""player"" is local"; };
 
 // Prevent multiple instances of the script for the same player
-if ( not (isNil (_player getVariable ["HSO_BFTScriptHandler", nil]))) exitWith { diag_log "The HSO_fnc_BFTcreateMarkersLocal is already running for this player"; };
+if ( not (isNil (_player getVariable ["HSO_BFTScriptHandler", nil]))) exitWith { diag_log "The HSO_fnc_BFTenable is already running for this player"; };
 
 // Store the script handler in a player variable for potential future use
 _player setVariable ["HSO_BFTScriptHandler", _thisScript];
